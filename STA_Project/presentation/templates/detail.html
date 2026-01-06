@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="container mt-5">
+    <div class="card border-0 shadow-lg">
+        <div class="card-header bg-primary text-white text-center py-4">
+            <h2 class="mb-0"><i class="fas fa-qrcode"></i> Trazabilidad Lote: {{ p.lote }}</h2>
+            <p class="mb-0">ID Sistema: #{{ p.id }}</p>
+        </div>
+        <div class="card-body p-5">
+            <div class="row text-center">
+                <div class="col-md-4">
+                    <div class="p-3 border rounded bg-light">
+                        <h4 class="text-success"><i class="fas fa-seedling"></i> Origen</h4>
+                        <hr>
+                        <p><strong>Finca:</strong> {{ p.finca }}</p>
+                        <p><strong>Variedad:</strong> {{ p.variedad }}</p>
+                        <p><strong>Cosechado:</strong> {{ p.fecha_cosecha }}</p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded bg-light">
+                        <h4 class="text-warning"><i class="fas fa-box-open"></i> Proceso</h4>
+                        <hr>
+                        <p><strong>Empaquetado:</strong> {{ p.fecha_empaquetado }}</p>
+                        <p><strong>Estado:</strong> 
+                            <span class="badge {{ 'bg-success' if p.calidad_ok == 'Aprobado' else 'bg-danger' }}">
+                                {{ p.calidad_ok }}
+                            </span>
+                        </p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="p-3 border rounded bg-light">
+                        <h4 class="text-info"><i class="fas fa-truck"></i> Destino</h4>
+                        <hr>
+                        <p><strong>Entregado:</strong> {{ p.fecha_entrega }}</p>
+                        <p><strong>Temp. Viaje:</strong> {{ p.temperatura_transporte }}°C</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-footer text-center py-3">
+            <a href="/" class="btn btn-outline-dark"><i class="fas fa-arrow-left"></i> Volver al listado</a>
+            <button onclick="window.print()" class="btn btn-outline-primary"><i class="fas fa-print"></i> Imprimir Reporte</button>
+        </div>
+    </div>
+</div>
+{% endblock %}
